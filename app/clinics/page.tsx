@@ -1,45 +1,7 @@
 import { MapPin, Phone, Clock } from "lucide-react";
 import Button from "@/components/ui/Button";
+import { clinics } from "@/data/clinics";
 
-// Placeholder clinics data - user will provide actual data
-const clinics = [
-    {
-        id: 1,
-        name: "ВетерОК! на Примерной",
-        address: "г. Москва, ул. Примерная, д. 1",
-        metro: "м. Примерная",
-        phone: "+7 (495) 123-45-67",
-        hours: "Круглосуточно",
-        coordinates: { lat: 55.7558, lng: 37.6173 },
-    },
-    {
-        id: 2,
-        name: "ВетерОК! на Образцовой",
-        address: "г. Москва, ул. Образцовая, д. 10",
-        metro: "м. Образцовая",
-        phone: "+7 (495) 234-56-78",
-        hours: "09:00 - 21:00",
-        coordinates: { lat: 55.7600, lng: 37.6200 },
-    },
-    {
-        id: 3,
-        name: "ВетерОК! на Тестовой",
-        address: "г. Москва, ул. Тестовая, д. 5",
-        metro: "м. Тестовая",
-        phone: "+7 (495) 345-67-89",
-        hours: "08:00 - 22:00",
-        coordinates: { lat: 55.7650, lng: 37.6100 },
-    },
-    {
-        id: 4,
-        name: "ВетерОК! на Демонстрационной",
-        address: "г. Москва, ул. Демонстрационная, д. 15",
-        metro: "м. Демонстрационная",
-        phone: "+7 (495) 456-78-90",
-        hours: "Круглосуточно",
-        coordinates: { lat: 55.7700, lng: 37.6300 },
-    },
-];
 
 export default function ClinicsPage() {
     return (

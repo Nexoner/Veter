@@ -1,5 +1,6 @@
 import { Phone, Mail, MapPin, Clock, AlertCircle } from "lucide-react";
 import Button from "@/components/ui/Button";
+import { clinics } from "@/data/clinics";
 
 const contactInfo = {
     phone: "+7 (495) 123-45-67",
@@ -8,13 +9,6 @@ const contactInfo = {
     address: "г. Москва, 4 клиники",
     hours: "Круглосуточно",
 };
-
-const clinicAddresses = [
-    { name: "ВетерОК! на Примерной", address: "ул. Примерная, д. 1", metro: "м. Примерная" },
-    { name: "ВетерОК! на Образцовой", address: "ул. Образцовая, д. 10", metro: "м. Образцовая" },
-    { name: "ВетерОК! на Тестовой", address: "ул. Тестовая, д. 5", metro: "м. Тестовая" },
-    { name: "ВетерОК! на Демонстрационной", address: "ул. Демонстрационной, д. 15", metro: "м. Демонстрационная" },
-];
 
 export default function ContactsPage() {
     return (
@@ -109,9 +103,9 @@ export default function ContactsPage() {
                     <div className="lg:col-span-2">
                         <h2 className="text-xl font-bold text-gray-900 mb-4">Наши клиники</h2>
                         <div className="grid sm:grid-cols-2 gap-4">
-                            {clinicAddresses.map((clinic, index) => (
+                            {clinics.map((clinic) => (
                                 <div
-                                    key={index}
+                                    key={clinic.id}
                                     className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
                                 >
                                     <h3 className="font-semibold text-gray-900 mb-2">{clinic.name}</h3>

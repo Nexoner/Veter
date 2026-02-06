@@ -111,13 +111,13 @@ export default function HomePage() {
 
             {/* Right Image */}
             <div className="order-1 lg:order-2 relative">
-              <div className="relative aspect-square max-w-lg mx-auto">
+              <div className="relative aspect-square max-w-lg mx-auto rounded-full overflow-hidden">
                 <div className="absolute inset-0 bg-[var(--color-primary)] rounded-full opacity-10 scale-110"></div>
                 <Image
-                  src="/hero-dog.png"
+                  src="/dog.jpg"
                   alt="Счастливый питомец"
                   fill
-                  className="object-contain relative z-10"
+                  className="object-cover relative z-10"
                   priority
                 />
               </div>
@@ -200,14 +200,18 @@ export default function HomePage() {
             Запишитесь на приём онлайн или позвоните нам. Мы работаем круглосуточно!
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button href="/contacts" variant="secondary" size="lg" icon={Phone}>
+            <Button
+              href="tel:+74951234567"
+              variant="secondary"
+              size="lg"
+              icon={Phone}
+            >
               +7 (495) 123-45-67
             </Button>
             <Button
               href="/contacts"
-              variant="ghost"
+              variant="outline-white"
               size="lg"
-              className="text-white border-2 border-white/30 hover:bg-white/10"
             >
               Записаться онлайн
             </Button>

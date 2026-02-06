@@ -39,7 +39,7 @@ export default function Header() {
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className="text-gray-700 hover:text-[var(--color-primary)] font-medium transition-colors text-sm"
+                                className="!text-gray-700 hover:!text-[var(--color-primary)] font-medium transition-colors text-sm whitespace-nowrap"
                             >
                                 {link.label}
                             </Link>
@@ -50,7 +50,7 @@ export default function Header() {
                     <div className="hidden lg:flex items-center gap-4">
                         <a
                             href="tel:+74951234567"
-                            className="flex items-center gap-2 text-gray-700 hover:text-[var(--color-primary)] font-medium"
+                            className="flex items-center gap-2 !text-gray-700 hover:!text-[var(--color-primary)] font-medium"
                         >
                             <Phone size={18} />
                             <span>+7 (495) 123-45-67</span>

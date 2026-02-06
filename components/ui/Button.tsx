@@ -3,7 +3,16 @@ import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import { LucideIcon } from "lucide-react";
 
-type ButtonVariant = "primary" | "secondary" | "ghost";
+/**
+ * Button Variants:
+ * - primary: Blue background, white text (main CTA)
+ * - secondary: White background, dark text (light backgrounds)
+ * - outline: Transparent with blue border & text (light backgrounds)
+ * - ghost: Transparent, gray text (subtle actions)
+ * - outline-white: Transparent with white border & text (dark backgrounds)
+ * - ghost-white: Transparent, white text (dark backgrounds)
+ */
+type ButtonVariant = "primary" | "secondary" | "outline" | "ghost" | "outline-white" | "ghost-white";
 type ButtonSize = "sm" | "md" | "lg";
 
 interface ButtonProps {
@@ -20,9 +29,23 @@ interface ButtonProps {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-    primary: "bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-hover)] shadow-md hover:shadow-lg",
-    secondary: "bg-white text-gray-900 shadow-md hover:shadow-lg border border-gray-200",
-    ghost: "bg-transparent text-gray-700 hover:bg-gray-100",
+    // Main CTA - blue background, white text
+    primary: "bg-[var(--color-primary)] !text-white hover:bg-[var(--color-primary-hover)] shadow-md hover:shadow-lg",
+
+    // Secondary - white background, dark text (for light backgrounds)
+    secondary: "bg-white !text-gray-900 shadow-md hover:shadow-lg border border-gray-200",
+
+    // Outline - transparent with blue border (for light backgrounds)
+    outline: "bg-transparent !text-[var(--color-primary)] border-2 border-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:!text-white",
+
+    // Ghost - subtle, transparent (for light backgrounds)
+    ghost: "bg-transparent !text-gray-700 hover:bg-gray-100",
+
+    // Outline White - for dark/colored backgrounds
+    "outline-white": "bg-transparent !text-white border-2 border-white hover:bg-white/20",
+
+    // Ghost White - for dark/colored backgrounds
+    "ghost-white": "bg-transparent !text-white hover:bg-white/10",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
