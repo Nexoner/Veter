@@ -1,5 +1,6 @@
 import { MapPin, Phone, Clock } from "lucide-react";
 import Button from "@/components/ui/Button";
+import YandexMap from "@/components/ui/YandexMap";
 import { clinics } from "@/data/clinics";
 
 
@@ -71,14 +72,8 @@ export default function ClinicsPage() {
                     ))}
                 </div>
 
-                {/* Map Placeholder */}
-                <div className="bg-gray-100 rounded-3xl h-96 flex items-center justify-center">
-                    <div className="text-center">
-                        <MapPin size={48} className="text-gray-400 mx-auto mb-4" />
-                        <p className="text-gray-500">Интерактивная карта</p>
-                        <p className="text-sm text-gray-400">Здесь будет встроена Яндекс.Карта</p>
-                    </div>
-                </div>
+                {/* Yandex Map */}
+                <YandexMap clinics={clinics} />
             </div>
         </div>
     );
