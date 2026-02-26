@@ -45,8 +45,8 @@ const doctors = [
 const benefits = [
   {
     icon: Clock,
-    title: "Работаем 24/7",
-    description: "Круглосуточная помощь вашим питомцам без выходных",
+    title: "Ежедневно 9 — 22",
+    description: "Работаем каждый день без выходных и праздников",
   },
   {
     icon: Shield,
@@ -197,7 +197,7 @@ export default function HomePage() {
             Нужна консультация?
           </h2>
           <p className="text-white/80 max-w-2xl mx-auto mb-8">
-            Запишитесь на приём онлайн или позвоните нам. Мы работаем круглосуточно!
+            Запишитесь на приём онлайн или позвоните нам. Работаем ежедневно с 9:00 до 22:00!
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Button

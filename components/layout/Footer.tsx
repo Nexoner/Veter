@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
 
@@ -20,7 +23,26 @@ const footerLinks = [
     },
 ];
 
+function useClinicOpen() {
+    const [isOpen, setIsOpen] = useState(true);
+
+    useEffect(() => {
+        function check() {
+            const now = new Date();
+            const hours = now.getHours();
+            setIsOpen(hours >= 9 && hours < 22);
+        }
+        check();
+        const interval = setInterval(check, 60_000);
+        return () => clearInterval(interval);
+    }, []);
+
+    return isOpen;
+}
+
 export default function Footer() {
+    const isOpen = useClinicOpen();
+
     return (
         <footer className="bg-gray-900 text-white">
             <div className="container-custom py-12">
@@ -90,11 +112,18 @@ export default function Footer() {
                         © {new Date().getFullYear()} ВетерОК! Все права защищены.
                     </p>
                     <div className="flex items-center gap-4">
-                        <span className="text-gray-500 text-sm">Работаем 24/7</span>
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-500/20 text-green-400 text-xs font-medium rounded-full">
-                            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                            Открыто
-                        </span>
+                        <span className="text-gray-500 text-sm">Ежедневно 9:00 — 22:00</span>
+                        {isOpen ? (
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-500/20 text-green-400 text-xs font-medium rounded-full">
+                                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                                Открыто
+                            </span>
+                        ) : (
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-red-500/20 text-red-400 text-xs font-medium rounded-full">
+                                <span className="w-2 h-2 bg-red-400 rounded-full"></span>
+                                Закрыто
+                            </span>
+                        )}
                     </div>
                 </div>
             </div>

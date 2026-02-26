@@ -15,8 +15,8 @@ export const clinics: Clinic[] = [
         address: "г. Москва, ул. Шкулёва, д. 7а.",
         metro: "м. Текстильщики",
         phone: "+7 (495) 123-45-67",
-        hours: "9:00 - 22:00",
-        coordinates: { lat: 55.7558, lng: 37.6173 },
+        hours: "10:00 — 22:00",
+        coordinates: { lat: 55.693566, lng: 37.741288 },
     },
     {
         id: 2,
@@ -24,8 +24,8 @@ export const clinics: Clinic[] = [
         address: "г. Москва, Ленинский р-он, пос. Володарского ул. Центральная 2а",
         metro: "-",
         phone: "+7 (495) 234-56-78",
-        hours: "09:00 - 20:00",
-        coordinates: { lat: 55.7600, lng: 37.6200 },
+        hours: "9:00 — 20:00",
+        coordinates: { lat: 55.501090, lng: 37.944981 },
     },
     {
         id: 3,
@@ -33,8 +33,8 @@ export const clinics: Clinic[] = [
         address: "г. Москва, Митино, ул. Генерала Белобородова, д.11",
         metro: "м.Митино",
         phone: "+7 (495) 345-67-89",
-        hours: "08:00 - 22:00",
-        coordinates: { lat: 55.7650, lng: 37.6100 },
+        hours: "10:00 — 22:00",
+        coordinates: { lat: 55.836777, lng: 37.354644 },
     },
     {
         id: 4,
@@ -42,7 +42,7 @@ export const clinics: Clinic[] = [
         address: "г. Москва, Новые Островцы, ул. Баулинская, д. 13",
         metro: "-",
         phone: "+7 (495) 456-78-90",
-        hours: "10:00 - 20:00",
-        coordinates: { lat: 55.7700, lng: 37.6300 },
+        hours: "10:00 — 21:00",
+        coordinates: { lat: 55.602754, lng: 37.988792 },
     },
 ];

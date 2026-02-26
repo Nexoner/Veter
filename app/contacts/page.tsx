@@ -7,7 +7,7 @@ const contactInfo = {
     emergencyPhone: "+7 (495) 999-99-99",
     email: "info@veterok.ru",
     address: "г. Москва, 4 клиники",
-    hours: "Круглосуточно",
+    hours: "Ежедневно 9:00 — 22:00",
 };
 
 export default function ContactsPage() {

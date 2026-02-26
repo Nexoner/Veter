@@ -50,7 +50,7 @@ export default function ClinicsPage() {
 
                                 <div className="flex items-center gap-3">
                                     <Clock size={20} className="text-[var(--color-primary)] flex-shrink-0" />
-                                    <span className={`${clinic.hours === "Круглосуточно" ? "text-green-600 font-medium" : "text-gray-700"}`}>
+                                    <span className="text-gray-700">
                                         {clinic.hours}
                                     </span>
                                 </div>
