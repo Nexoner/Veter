@@ -40,6 +40,20 @@ const doctors = [
     specialty: "Анестезия, реанимация, интенсивная терапия",
     image: "/zabelova.webp",
   },
+  {
+    id: 6,
+    name: "Московкина Альбина Витальевна",
+    title: "Врач общей практики, Герпетолог, Анастезиолог",
+    specialty: "Гуру Pet-frendly, анастезия, реанимация, терапия",
+    image: "/moskva.webp",
+  },
+  {
+    id: 7,
+    name: "Денисова Мария Александровна",
+    title: "Врач общей практики, Стоматолог, Ротолог",
+    specialty: "Гуру Pet-frendly, стоматология, терапия",
+    image: "/masha.webp",
+  },
 ];
 
 const benefits = [
