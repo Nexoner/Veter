@@ -45,14 +45,14 @@ const doctors = [
     name: "Московкина Альбина Витальевна",
     title: "Врач общей практики, Герпетолог, Анастезиолог",
     specialty: "Гуру Pet-frendly, анастезия, реанимация, терапия",
-    image: "/moskva.webp",
+    image: "/moskva.jpg",
   },
   {
     id: 7,
     name: "Денисова Мария Александровна",
     title: "Врач общей практики, Стоматолог, Ротолог",
     specialty: "Гуру Pet-frendly, стоматология, терапия",
-    image: "/masha.webp",
+    image: "/masha.jpg",
   },
 ];
 
