@@ -20,7 +20,7 @@ export default function YandexMap({ clinics }: YandexMapProps) {
         "loading"
     );
 
-    const apiKey = process.env.NEXT_PUBLIC_YANDEX_MAPS_API_KEY;
+    const apiKey = process.env.YANDEX_MAPS_API_KEY;
 
     useEffect(() => {
         if (!apiKey || !mapContainerRef.current) return;
@@ -154,7 +154,7 @@ export default function YandexMap({ clinics }: YandexMapProps) {
             <div className="ymap-container ymap-fallback">
                 <p className="text-gray-500">
                     Для отображения карты добавьте{" "}
-                    <code>NEXT_PUBLIC_YANDEX_MAPS_API_KEY</code> в{" "}
+                    <code>YANDEX_MAPS_API_KEY</code> в{" "}
                     <code>.env.local</code>
                 </p>
             </div>
