@@ -1,37 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Calendar, ArrowRight } from "lucide-react";
-
-// Placeholder articles data
-const articles = [
-    {
-        id: 1,
-        slug: "kak-podgotovit-pitomca-k-operacii",
-        title: "Как подготовить питомца к операции",
-        excerpt: "Важные советы по подготовке вашего питомца к хирургическому вмешательству. Что нужно знать владельцу.",
-        date: "2024-01-15",
-        image: "/articles/surgery-prep.jpg",
-        category: "Хирургия",
-    },
-    {
-        id: 2,
-        slug: "vakcinacija-sobak-i-koshek",
-        title: "Вакцинация собак и кошек: полное руководство",
-        excerpt: "Когда и какие прививки нужны вашему питомцу. График вакцинации и важные нюансы.",
-        date: "2024-01-10",
-        image: "/articles/vaccination.jpg",
-        category: "Профилактика",
-    },
-    {
-        id: 3,
-        slug: "pravilnoe-pitanie-domashnih-zhivotnyh",
-        title: "Правильное питание домашних животных",
-        excerpt: "Как составить сбалансированный рацион для вашего питомца. Советы ветеринарного диетолога.",
-        date: "2024-01-05",
-        image: "/articles/nutrition.jpg",
-        category: "Питание",
-    },
-];
+import { getArticles } from "@/lib/data-store";
 
 function formatDate(dateString: string): string {
     const date = new Date(dateString);
@@ -42,7 +12,9 @@ function formatDate(dateString: string): string {
     });
 }
 
-export default function ArticlesPage() {
+export default async function ArticlesPage() {
+    const articles = await getArticles();
+
     return (
         <div className="section">
             <div className="container-custom">

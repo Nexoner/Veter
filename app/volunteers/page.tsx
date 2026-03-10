@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Heart, Send, CheckCircle } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import type { VolunteersData } from "@/lib/types";
 
 export default function VolunteersPage() {
+    const [pageData, setPageData] = useState<VolunteersData | null>(null);
     const [formData, setFormData] = useState({
         organizationName: "",
         contactPerson: "",
@@ -14,6 +16,12 @@ export default function VolunteersPage() {
         message: "",
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
+
+    useEffect(() => {
+        fetch("/api/admin/volunteers")
+            .then((res) => res.json())
+            .then((data) => setPageData(data));
+    }, []);
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -26,9 +34,22 @@ export default function VolunteersPage() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // In production, this would send data to an API
         console.log("Form submitted:", formData);
         setIsSubmitted(true);
+    };
+
+    // Use defaults while loading
+    const data = pageData || {
+        badge: "Вместе помогаем животным",
+        title: "Фондам и волонтерам",
+        intro: "Сеть клиник «ВетерОК!» активно сотрудничает с благотворительными организациями и волонтерами, помогающими бездомным животным.",
+        offersTitle: "Мы предлагаем:",
+        offers: [],
+        howToTitle: "Как начать сотрудничество?",
+        howToText: "Заполните форму справа, и мы свяжемся с вами в течение 24 часов для обсуждения условий сотрудничества.",
+        formTitle: "Заявка на сотрудничество",
+        successTitle: "Заявка отправлена!",
+        successText: "Мы свяжемся с вами в ближайшее время",
     };
 
     return (
@@ -39,32 +60,25 @@ export default function VolunteersPage() {
                     <div>
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-100 text-pink-600 rounded-full text-sm font-medium mb-6">
                             <Heart size={16} />
-                            Вместе помогаем животным
+                            {data.badge}
                         </div>
 
                         <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                            Фондам и волонтерам
+                            {data.title}
                         </h1>
 
                         <div className="prose prose-lg text-gray-600">
-                            <p>
-                                Сеть клиник «ВетерОК!» активно сотрудничает с благотворительными организациями
-                                и волонтерами, помогающими бездомным животным.
-                            </p>
+                            <p>{data.intro}</p>
 
-                            <h3 className="text-gray-900 font-semibold">Мы предлагаем:</h3>
+                            <h3 className="text-gray-900 font-semibold">{data.offersTitle}</h3>
                             <ul>
-                                <li>Льготные условия на лечение подопечных фондов</li>
-                                <li>Бесплатные консультации для волонтеров</li>
-                                <li>Скидки на стерилизацию бездомных животных</li>
-                                <li>Помощь в пристройстве животных</li>
+                                {data.offers.map((offer, index) => (
+                                    <li key={index}>{offer}</li>
+                                ))}
                             </ul>
 
-                            <h3 className="text-gray-900 font-semibold">Как начать сотрудничество?</h3>
-                            <p>
-                                Заполните форму справа, и мы свяжемся с вами в течение 24 часов для
-                                обсуждения условий сотрудничества.
-                            </p>
+                            <h3 className="text-gray-900 font-semibold">{data.howToTitle}</h3>
+                            <p>{data.howToText}</p>
                         </div>
                     </div>
 
@@ -76,16 +90,16 @@ export default function VolunteersPage() {
                                     <CheckCircle size={32} className="text-green-600" />
                                 </div>
                                 <h3 className="text-xl font-bold text-gray-900 mb-2">
-                                    Заявка отправлена!
+                                    {data.successTitle}
                                 </h3>
                                 <p className="text-gray-600">
-                                    Мы свяжемся с вами в ближайшее время
+                                    {data.successText}
                                 </p>
                             </div>
                         ) : (
                             <>
                                 <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                                    Заявка на сотрудничество
+                                    {data.formTitle}
                                 </h2>
 
                                 <form onSubmit={handleSubmit} className="space-y-5">

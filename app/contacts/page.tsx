@@ -1,16 +1,13 @@
 import { Phone, Mail, MapPin, Clock, AlertCircle } from "lucide-react";
 import Button from "@/components/ui/Button";
-import { clinics } from "@/data/clinics";
+import { getClinics, getContacts } from "@/lib/data-store";
 
-const contactInfo = {
-    phone: "+7 (495) 123-45-67",
-    emergencyPhone: "+7 (495) 999-99-99",
-    email: "info@veterok.ru",
-    address: "г. Москва, 4 клиники",
-    hours: "Ежедневно 9:00 — 22:00",
-};
+export default async function ContactsPage() {
+    const [contactInfo, clinics] = await Promise.all([
+        getContacts(),
+        getClinics(),
+    ]);
 
-export default function ContactsPage() {
     return (
         <div className="section">
             <div className="container-custom">

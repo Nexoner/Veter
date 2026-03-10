@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Clinic } from "@/data/clinics";
+import { Clinic } from "@/lib/types";
 
 interface YandexMapProps {
     clinics: Clinic[];

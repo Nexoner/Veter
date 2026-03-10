@@ -1,10 +1,11 @@
 import { MapPin, Phone, Clock } from "lucide-react";
 import Button from "@/components/ui/Button";
 import YandexMap from "@/components/ui/YandexMap";
-import { clinics } from "@/data/clinics";
+import { getClinics } from "@/lib/data-store";
 
+export default async function ClinicsPage() {
+    const clinics = await getClinics();
 
-export default function ClinicsPage() {
     return (
         <div className="section">
             <div className="container-custom">
