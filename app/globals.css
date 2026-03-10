@@ -84,6 +84,16 @@ h6 {
   color: var(--color-foreground);
 }
 
+/* Admin panel: force light headings on dark background */
+.admin-layout h1,
+.admin-layout h2,
+.admin-layout h3,
+.admin-layout h4,
+.admin-layout h5,
+.admin-layout h6 {
+  color: #f1f5f9;
+}
+
 h1 {
   font-size: 3rem;
 }

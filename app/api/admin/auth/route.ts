@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
 import crypto from "crypto";
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin";
@@ -11,6 +10,14 @@ function generateToken(): string {
         .update(Date.now().toString() + crypto.randomBytes(16).toString("hex"))
         .digest("hex");
 }
+
+const COOKIE_OPTIONS = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict" as const,
+    maxAge: 60 * 60 * 24, // 24 hours
+    path: "/",
+};
 
 export async function POST(request: NextRequest) {
     try {
@@ -26,42 +33,29 @@ export async function POST(request: NextRequest) {
             }
 
             const token = generateToken();
-            const cookieStore = await cookies();
+            const tokenHash = crypto
+                .createHmac("sha256", ADMIN_SECRET)
+                .update(token)
+                .digest("hex");
 
-            cookieStore.set("admin_token", token, {
-                httpOnly: true,
-                secure: process.env.NODE_ENV === "production",
-                sameSite: "strict",
-                maxAge: 60 * 60 * 24, // 24 hours
-                path: "/",
-            });
+            const response = NextResponse.json({ success: true });
 
-            // Store token hash for validation
-            cookieStore.set("admin_token_hash",
-                crypto.createHmac("sha256", ADMIN_SECRET).update(token).digest("hex"),
-                {
-                    httpOnly: true,
-                    secure: process.env.NODE_ENV === "production",
-                    sameSite: "strict",
-                    maxAge: 60 * 60 * 24,
-                    path: "/",
-                }
-            );
+            response.cookies.set("admin_token", token, COOKIE_OPTIONS);
+            response.cookies.set("admin_token_hash", tokenHash, COOKIE_OPTIONS);
 
-            return NextResponse.json({ success: true });
+            return response;
         }
 
         if (action === "logout") {
-            const cookieStore = await cookies();
-            cookieStore.delete("admin_token");
-            cookieStore.delete("admin_token_hash");
-            return NextResponse.json({ success: true });
+            const response = NextResponse.json({ success: true });
+            response.cookies.delete("admin_token");
+            response.cookies.delete("admin_token_hash");
+            return response;
         }
 
         if (action === "check") {
-            const cookieStore = await cookies();
-            const token = cookieStore.get("admin_token")?.value;
-            const storedHash = cookieStore.get("admin_token_hash")?.value;
+            const token = request.cookies.get("admin_token")?.value;
+            const storedHash = request.cookies.get("admin_token_hash")?.value;
 
             if (!token || !storedHash) {
                 return NextResponse.json({ authenticated: false });
